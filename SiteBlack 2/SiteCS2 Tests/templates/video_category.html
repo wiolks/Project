@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if subcategory %}
+        {{ category.capitalize() }} - {{ subcategory.capitalize() }} Videos
+    {% else %}
+        {{ category.capitalize() }} Videos
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h2>
+        {% if subcategory %}
+            {{ category.capitalize() }} - {{ subcategory.capitalize() }} Videos
+        {% else %}
+            {{ category.capitalize() }} Videos
+        {% endif %}
+    </h2>
+
+    <p>
+        <a href="/">Home</a>
+        >
+        <a href="/category/{{ category }}"> {{ category.capitalize() }} </a>
+        {% if subcategory %}
+            > {{ subcategory.capitalize() }}
+        {% endif %}
+    </p>
+
+    <div class="video-grid">
+        {% for video in videos %}
+            <div class="video-item" data-video="{{ video }}" data-description="{{ video[:-4] }}">
+                <video width="320" height="180" muted>
+                    <source src="/videos/{{ video }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p>{{ video[:-4] }}</p>  <!-- Отображаем имя файла без расширения -->
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="video-overlay">
+        <div id="video-player">
+            <button id="close-button">×</button>
+            <video controls>
+                <source src="" type="video/mp4" id="overlay-video-source">
+                Your browser does not support the video tag.
+            </video>
+            <div id="video-description"></div>
+        </div>
+    </div>
+
+    <a href="/">Back to Maps</a>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}

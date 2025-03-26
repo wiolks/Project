@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="main-content">
+            <h2>Welcome to CS2 Video Tutorials</h2>
+            <p>Explore various categories and subcategories of CS2 videos to learn and improve your skills.</p>
+
+            <h3>Maps(Карты из игры)</h3>
+            <div class="category-grid">
+                {% for category, subcategories in categories %}
+                    <a href="/category/{{ category }}" class="category-item">
+                        <span>{{ category.capitalize() }}</span>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="info-box">
+            <h3>Про CS2</h3>
+            <p>Counter-Strike 2 (CS2) - компьютерная игра-шутер от первого лица, разработанная Valve и Hidden Path Entertainment. Она является продолжением Counter-Strike: Global Offensive (CS:GO) и была выпущена в 2023 году.</p>
+            <p>На этом сайте представлена коллекция руководств, которые помогут вам.</p>
+        </div>
+    </div>
+{% endblock %}

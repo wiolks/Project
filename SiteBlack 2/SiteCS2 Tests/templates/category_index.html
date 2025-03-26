@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ category_name.capitalize() }}{% endblock %}
+
+{% block content %}
+    <h2>{{ category_name.capitalize() }}</h2>
+    <div class="subcategory-grid">
+        {% for subcategory, videos in subcategories %}
+            <a href="/category/{{ category_name }}/{{ subcategory }}" class="subcategory-item">
+                <span>{{ subcategory.capitalize() }}</span>
+            </a>
+        {% endfor %}
+    </div>
+    <p><a href="/">Back to MAPS</a></p>
+{% endblock %}
